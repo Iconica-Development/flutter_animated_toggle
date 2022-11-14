@@ -17,17 +17,20 @@ class AnimatedToggleDemo extends StatefulWidget {
 }
 
 class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
-  bool valueFireStarter = false;
-  bool valueGrassStarter = false;
-  bool valueWaterStarter = false;
+  bool _valueFireStarter = false;
+  bool _valueGrassStarter = false;
+  bool _valueWaterStarter = false;
+  bool _dayNight = true;
+  bool _switch = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _dayNight ? Colors.white : Colors.black,
       appBar: AppBar(
         backgroundColor: const Color(0xff3f7bbe),
         title: const Text(
-          'Choose Pokémon',
+          'Animated Toggle',
           style: TextStyle(
             color: Color(0xffffd300),
             fontSize: 20,
@@ -43,7 +46,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
               toggleColor: Colors.red,
               onSwitch: (value) {
                 setState(() {
-                  valueFireStarter = value;
+                  _valueFireStarter = value;
                 });
               },
               childLeft: Row(
@@ -52,7 +55,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueFireStarter ? Colors.red : Colors.white,
+                      color: _valueFireStarter ? Colors.red : Colors.white,
                     ),
                   ),
                   const Text(
@@ -67,7 +70,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueFireStarter ? Colors.white : Colors.red,
+                      color: _valueFireStarter ? Colors.white : Colors.red,
                     ),
                   ),
                   const Text(
@@ -85,7 +88,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
               toggleColor: Colors.green,
               onSwitch: (value) {
                 setState(() {
-                  valueGrassStarter = value;
+                  _valueGrassStarter = value;
                 });
               },
               childLeft: Row(
@@ -94,7 +97,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueGrassStarter ? Colors.green : Colors.white,
+                      color: _valueGrassStarter ? Colors.green : Colors.white,
                     ),
                   ),
                   const Text(
@@ -109,7 +112,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueGrassStarter ? Colors.white : Colors.green,
+                      color: _valueGrassStarter ? Colors.white : Colors.green,
                     ),
                   ),
                   const Text(
@@ -127,7 +130,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
               toggleColor: Colors.blue,
               onSwitch: (value) {
                 setState(() {
-                  valueWaterStarter = value;
+                  _valueWaterStarter = value;
                 });
               },
               childLeft: Row(
@@ -136,7 +139,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueWaterStarter ? Colors.blue : Colors.white,
+                      color: _valueWaterStarter ? Colors.blue : Colors.white,
                     ),
                   ),
                   const Text(
@@ -151,7 +154,7 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: Icon(
                       Icons.catching_pokemon,
-                      color: valueWaterStarter ? Colors.white : Colors.blue,
+                      color: _valueWaterStarter ? Colors.white : Colors.blue,
                     ),
                   ),
                   const Text(
@@ -160,6 +163,69 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
                   ),
                 ],
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: AnimatedToggle(
+              initialState: _dayNight,
+              width: 100,
+              decoration: const BoxDecoration(color: Colors.white),
+              childLeft: const Icon(Icons.dark_mode),
+              childRight: const Icon(Icons.light_mode),
+              onSwitch: (value) {
+                setState(() {
+                  _dayNight = value;
+                });
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 125,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 12, 227, 213),
+                        Color.fromARGB(255, 1, 135, 244),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Text(
+                      _switch ? 'Off' : 'On',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Arial',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                AnimatedToggle(
+                  initialState: _switch,
+                  toggleColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  width: 150,
+                  onSwitch: (value) {
+                    setState(() {
+                      _switch = value;
+                    });
+                  },
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  childLeft: const Text(''),
+                  childRight: const Text(''),
+                ),
+              ],
             ),
           ),
         ],

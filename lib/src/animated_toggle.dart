@@ -115,7 +115,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
       _boxDecoration = BoxDecoration(
         boxShadow: [
           BoxShadow(
-            blurRadius: 10,
+            blurRadius: 5,
             color: Colors.black.withOpacity(0.5),
           )
         ],
