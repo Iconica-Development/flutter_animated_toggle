@@ -17,7 +17,9 @@ class AnimatedToggleDemo extends StatefulWidget {
 }
 
 class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
-  bool value = false;
+  bool valueFireStarter = false;
+  bool valueGrassStarter = false;
+  bool valueWaterStarter = false;
 
   @override
   Widget build(BuildContext context) {
@@ -32,47 +34,135 @@ class _AnimatedToggleDemoState extends State<AnimatedToggleDemo> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40),
-        child: AnimatedToggle(
-          duration: const Duration(milliseconds: 100),
-          toggleColor: Colors.red,
-          onSwitch: (value) {
-            setState(() {
-              this.value = value;
-            });
-          },
-          childLeft: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 25, right: 10),
-                child: Icon(
-                  Icons.catching_pokemon,
-                  color: value ? Colors.red : Colors.white,
-                ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: AnimatedToggle(
+              duration: const Duration(milliseconds: 100),
+              toggleColor: Colors.red,
+              onSwitch: (value) {
+                setState(() {
+                  valueFireStarter = value;
+                });
+              },
+              childLeft: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueFireStarter ? Colors.red : Colors.white,
+                    ),
+                  ),
+                  const Text(
+                    'Charizard',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-              const Text(
-                'Charizard',
-                style: TextStyle(fontSize: 16),
+              childRight: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueFireStarter ? Colors.white : Colors.red,
+                    ),
+                  ),
+                  const Text(
+                    'Infernape',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-          childRight: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 25, right: 10),
-                child: Icon(
-                  Icons.catching_pokemon,
-                  color: value ? Colors.white : Colors.red,
-                ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: AnimatedToggle(
+              duration: const Duration(milliseconds: 100),
+              toggleColor: Colors.green,
+              onSwitch: (value) {
+                setState(() {
+                  valueGrassStarter = value;
+                });
+              },
+              childLeft: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueGrassStarter ? Colors.green : Colors.white,
+                    ),
+                  ),
+                  const Text(
+                    'Venusaur',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-              const Text(
-                'Empoleon',
-                style: TextStyle(fontSize: 16),
+              childRight: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueGrassStarter ? Colors.white : Colors.green,
+                    ),
+                  ),
+                  const Text(
+                    'Torterra',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: AnimatedToggle(
+              duration: const Duration(milliseconds: 100),
+              toggleColor: Colors.blue,
+              onSwitch: (value) {
+                setState(() {
+                  valueWaterStarter = value;
+                });
+              },
+              childLeft: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueWaterStarter ? Colors.blue : Colors.white,
+                    ),
+                  ),
+                  const Text(
+                    'Blastoise',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+              childRight: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, right: 10),
+                    child: Icon(
+                      Icons.catching_pokemon,
+                      color: valueWaterStarter ? Colors.white : Colors.blue,
+                    ),
+                  ),
+                  const Text(
+                    'Empoleon',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,19 +1,15 @@
-[![pub package](https://img.shields.io/pub/v/[PACKAGE NAME ON PUB].svg)](https://github.com/Iconica-Development) [![Build status](https://github.com/Iconica-Development/flutter_animated_toggle)](https://github.com/Iconica-Development/flutter_animated_toggle/actions) [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart) 
+# Animated toggle widget
 
-Animation toggle widget
+![Animated Toggle GIF](animated_toggle.gif)
+## Features
 
 ## Setup
 
-Add to pubspec:
-```animated_toggle:
-   git:
-      url: https://github.com/Iconica-Development/flutter_animated_toggle.git
-      ref: v0.0.1
-```
+To use this package, add `flutter_animated_toggle` as a dependency in your pubspec.yaml file.
 
 ## How to use
 
-Example can be found in /example
+See the [Example Code](example/lib/main.dart) for an example on how to use this package.
 
 ## Issues
 
