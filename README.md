@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/animated_toggle.svg)](https://github.com/Iconica-Development) [![Build status](https://img.shields.io/github/workflow/status/Iconica-Development/flutter_animated_toggle/CI)](https://github.com/Iconica-Development/flutter_animated_toggle/actions/new) [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://github.com/tenhobi/effective_dart) 
+
 # Animated toggle widget
 
 ![Animated Toggle GIF](animated_toggle.gif)
