@@ -3,6 +3,10 @@
 # Animated toggle widget
 
 ![Animated Toggle GIF](animated_toggle.gif)
+
+Figma Design that defines this component (only accessible for Iconica developers): https://www.figma.com/file/4WkjwynOz5wFeFBRqTHPeP/Iconica-Design-System?type=design&node-id=356%3A3326&mode=design&t=XulkAJNPQ32ARxWh-1
+
+
 ## Features
 
 ## Setup
