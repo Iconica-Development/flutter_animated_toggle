@@ -13,35 +13,33 @@ class _ToggleIndicator extends StatelessWidget {
     required this.decoration,
     required this.onSwipe,
     this.padding,
-    Key? key,
-  }) : super(key: key);
+  });
 
   final Color color;
   final Widget child;
   final BoxDecoration decoration;
   final EdgeInsetsGeometry? padding;
 
+  // ignore: avoid_positional_boolean_parameters
   final void Function(bool swipeToRight) onSwipe;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragUpdate: (DragUpdateDetails dragUpdateDetails) {
-        if (dragUpdateDetails.delta.dx > 0) {
-          onSwipe(true);
-        } else {
-          onSwipe(false);
-        }
-      },
-      child: DecoratedBox(
-        decoration: decoration.copyWith(color: color),
-        child: Container(
-          padding: padding,
-          child: child,
+  Widget build(BuildContext context) => GestureDetector(
+        onHorizontalDragUpdate: (DragUpdateDetails dragUpdateDetails) {
+          if (dragUpdateDetails.delta.dx > 0) {
+            onSwipe(true);
+          } else {
+            onSwipe(false);
+          }
+        },
+        child: DecoratedBox(
+          decoration: decoration.copyWith(color: color),
+          child: Container(
+            padding: padding,
+            child: child,
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 /// Switch toggle button with animation
@@ -57,10 +55,11 @@ class AnimatedToggle extends StatefulWidget {
     this.width = 320,
     this.duration = const Duration(milliseconds: 300),
     this.padding = const EdgeInsets.symmetric(vertical: 15),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   /// Called on switch, passes the current value
+  // ignore: avoid_positional_boolean_parameters
   final void Function(bool) onSwitch;
 
   /// Widget shown on the left side of the button
@@ -117,7 +116,7 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
           BoxShadow(
             blurRadius: 5,
             color: Colors.black.withOpacity(0.5),
-          )
+          ),
         ],
         color: Colors.white,
         borderRadius: BorderRadius.circular(50),
@@ -147,72 +146,69 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
     widget.onSwitch(switchStatus);
   }
 
-  bool _canInteractOnSwipe(bool swipeToRight) {
-    return (!switchStatus && swipeToRight) || (switchStatus && !swipeToRight);
-  }
+  bool _canInteractOnSwipe(bool swipeToRight) =>
+      (!switchStatus && swipeToRight) || (switchStatus && !swipeToRight);
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: widget.mainAxisAlignment,
-      children: [
-        Stack(
-          children: [
-            GestureDetector(
-              onTap: _onInteract,
-              child: Container(
-                width: widget.width,
-                decoration: _boxDecoration,
+  Widget build(BuildContext context) => Row(
+        mainAxisAlignment: widget.mainAxisAlignment,
+        children: [
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: _onInteract,
+                child: Container(
+                  width: widget.width,
+                  decoration: _boxDecoration,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: widget.width / 2,
+                        padding: widget.padding,
+                        child: widget.childLeft,
+                      ),
+                      Container(
+                        width: widget.width / 2,
+                        padding: widget.padding,
+                        child: widget.childRight,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              AnimatedContainer(
+                duration: widget.duration,
+                curve: Curves.easeInOutQuart,
+                width: widget.width / 2,
+                margin: switchStatus
+                    ? EdgeInsets.only(
+                        left: max(0, pressed ? 0 : widget.width / 2),
+                      )
+                    : EdgeInsets.only(
+                        left: max(0, pressed ? widget.width / 2 : 0),
+                      ),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: widget.width / 2,
-                      padding: widget.padding,
-                      child: widget.childLeft,
-                    ),
-                    Container(
-                      width: widget.width / 2,
-                      padding: widget.padding,
-                      child: widget.childRight,
+                      child: _ToggleIndicator(
+                        color: widget.toggleColor,
+                        decoration: _boxDecoration,
+                        padding: widget.padding,
+                        child:
+                            switchStatus ? widget.childRight : widget.childLeft,
+                        onSwipe: (bool swipeToRight) async {
+                          if (_canInteractOnSwipe(swipeToRight)) {
+                            await _onInteract();
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-            AnimatedContainer(
-              duration: widget.duration,
-              curve: Curves.easeInOutQuart,
-              width: widget.width / 2,
-              margin: switchStatus
-                  ? EdgeInsets.only(
-                      left: max(0, pressed ? 0 : widget.width / 2),
-                    )
-                  : EdgeInsets.only(
-                      left: max(0, pressed ? widget.width / 2 : 0),
-                    ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: widget.width / 2,
-                    child: _ToggleIndicator(
-                      color: widget.toggleColor,
-                      decoration: _boxDecoration,
-                      padding: widget.padding,
-                      child:
-                          switchStatus ? widget.childRight : widget.childLeft,
-                      onSwipe: (bool swipeToRight) {
-                        if (_canInteractOnSwipe(swipeToRight)) {
-                          _onInteract();
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+            ],
+          ),
+        ],
+      );
 }
