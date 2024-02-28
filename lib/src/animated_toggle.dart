@@ -28,7 +28,7 @@ class _ToggleIndicator extends StatelessWidget {
         onHorizontalDragUpdate: (DragUpdateDetails dragUpdateDetails) {
           if (dragUpdateDetails.delta.dx > 0) {
             onSwipe(true);
-          } else {
+          } else if (dragUpdateDetails.delta.dx < 0) {
             onSwipe(false);
           }
         },
