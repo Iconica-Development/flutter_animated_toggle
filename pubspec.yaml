@@ -1,10 +1,11 @@
 name: animated_toggle
 description: Animated Toggle
 version: 0.0.3
-homepage:
+homepage: https://github.com/Iconica-Development/flutter_animated_toggle
+publish_to: https://forgejo.internal.iconica.nl/api/packages/internal/pub/
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: ">=2.18.2 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -18,4 +19,3 @@ dev_dependencies:
     git:
       url: https://github.com/Iconica-Development/flutter_iconica_analysis
       ref: 6.0.0
-flutter:
